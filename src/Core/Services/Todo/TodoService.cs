@@ -20,7 +20,7 @@ namespace src.Core.Services
         }
         public async Task<GetTodoDTO> CreateTodo(InsertTodoDTO todo)
         {
-            var todoCreate = _repository.Create(_mapper.Map<Todo>(todo));
+            var todoCreate = _repository.Create(_mapper.Map<TodoItem>(todo));
             await _repository.SaveChangesAsync();
             return _mapper.Map<GetTodoDTO>(todoCreate);
         }
@@ -44,7 +44,7 @@ namespace src.Core.Services
 
         public async Task<GetTodoDTO> UpdateTodo(UpdateTodoDTO todo)
         {
-            var todoUpdate = _repository.Update(_mapper.Map<Todo>(todo));
+            var todoUpdate = _repository.Update(_mapper.Map<TodoItem>(todo));
             await _repository.SaveChangesAsync();
             return _mapper.Map<GetTodoDTO>(todoUpdate);
         }

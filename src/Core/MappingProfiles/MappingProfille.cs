@@ -7,9 +7,9 @@ namespace src.Core.MappingProfiles
     {
         public MappingProfile()
         {
-            CreateMap<Todo, GetTodoDTO>().ReverseMap();
-            CreateMap<InsertTodoDTO, Todo>();
-            CreateMap<UpdateTodoDTO, Todo>();
+            CreateMap<TodoItem, GetTodoDTO>().ReverseMap();
+            CreateMap<InsertTodoDTO, TodoItem>();
+            CreateMap<UpdateTodoDTO, TodoItem>();
         }
     }
 }
