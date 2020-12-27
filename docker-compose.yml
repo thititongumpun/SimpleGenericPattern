@@ -1,0 +1,36 @@
+# docker-compose up -d
+# docker-compose up --build
+# docker-compose down
+
+version: "3.9"
+
+networks:
+  localdev:
+    name: localdev
+
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - "ConnectionStrings__DefaultConnection=Server=mssql,1433;Database=TodoAppDb;User=sa;Password=YourStrong!Passw0rd;MultipleActiveResultSets=True;"
+    ports:
+      - "5000:80"
+      - "5001:80"
+    depends_on:
+      - mssql
+    networks:
+      - localdev
+    restart: on-failure
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: mssql
+    networks:
+      - localdev
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
