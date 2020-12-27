@@ -4,7 +4,7 @@ using src.Domain.Entities.Enum;
 
 namespace src
 {
-    public class Todo : Entity
+    public class TodoItem : Entity
     {
         [Required]
         public string Description { get; set; }

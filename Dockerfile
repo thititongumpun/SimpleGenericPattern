@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim as build
 WORKDIR /src
 COPY . .
 RUN dotnet restore
+RUN dotnet test --logger:trx
 RUN dotnet publish -c Release -o /app
 
 #runtime container

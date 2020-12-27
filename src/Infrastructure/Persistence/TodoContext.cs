@@ -6,7 +6,7 @@ namespace src.Infrastructure.Persistence
     {
         public TodoContext(DbContextOptions<TodoContext> options) : base(options) { }
 
-        public DbSet<Todo> Todos { get; set; }
+        public DbSet<TodoItem> Todos { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

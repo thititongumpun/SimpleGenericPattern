@@ -3,6 +3,6 @@ using src.Domain;
 
 namespace src.Core
 {
-    public interface ITodoRepository : IRepository<Todo> { }
+    public interface ITodoRepository : IRepository<TodoItem> { }
     
 }
