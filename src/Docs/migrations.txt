@@ -1,0 +1,1 @@
+dotnet ef migrations add "init" --output-dir Infrastructure/Persistence/Migrations
