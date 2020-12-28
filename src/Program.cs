@@ -22,7 +22,12 @@ namespace src
                 try
                 {
                     var context = services.GetRequiredService<TodoContext>();
-                    context.Database.Migrate();
+
+                    if (context.Database.IsSqlServer())
+                    {
+                        context.Database.Migrate();
+                    }   
+                    // context.Database.Migrate();
                 }
                 catch (Exception ex)
                 {

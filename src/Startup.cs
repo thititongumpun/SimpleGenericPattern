@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +33,15 @@ namespace src
 
             services.AddControllers();
 
-            services.AddConnection<TodoContext>(Configuration["ConnectionStrings:DefaultConnection"]);
+            if(Configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services.AddDbContext<TodoContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+            }
+            else
+            {
+                services.AddConnection<TodoContext>(Configuration["ConnectionStrings:DefaultConnection"]);
+            }
+            
             
             services.AddSwaggerGen(c =>
             {
@@ -40,7 +49,6 @@ namespace src
             });
 
             services.AddInfrastructure(Configuration);
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
