@@ -17,7 +17,10 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
-          name: Build Images
+          name: Install Docker client
+          command: apk add docker-cli
+      - run:
+          name: Build Image
           command: |
-            docker build -t SimpleGenericPatterns .
+            docker build -t SimpleGenericPattern .
             
