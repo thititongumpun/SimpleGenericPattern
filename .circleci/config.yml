@@ -19,7 +19,6 @@ jobs:
           command: dotnet test
           working_directory: SimpleGenericPattern
       - run:
-          - image: mcr.microsoft.com/dotnet/aspnet:5.0
           name: Build Images
           command: |
             docker build -t SimpleGenericPatterns .
