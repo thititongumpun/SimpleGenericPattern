@@ -18,7 +18,7 @@ jobs:
           version: 19.03.13
       - run:
           name: Install Docker client
-          command: sudo apt-get add docker-cli
+          command: apt-get add docker-cli
       - run:
           name: Build Image
           command: |
