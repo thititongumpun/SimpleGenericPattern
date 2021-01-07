@@ -6,19 +6,19 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Restore
-        command: dotnet restore
-        working_directory: SimpleGenericPattern
+          name: Restore
+          command: dotnet restore
+          working_directory: SimpleGenericPattern
       - run:
-        name: Build
-        command: dotnet build -c Release
-        working_directory: SimpleGenericPattern
+          name: Build
+          command: dotnet build -c Release
+          working_directory: SimpleGenericPattern
       - run:
-        name: Test
-        command: dotnet test
-        working_directory: SimpleGenericPattern
+          name: Test
+          command: dotnet test
+          working_directory: SimpleGenericPattern
       - setup_remote_docker:
-        docker_layer_caching: true
+          docker_layer_caching: true
       - run:
           name: Build Images
           command: |
