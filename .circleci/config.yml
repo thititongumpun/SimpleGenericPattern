@@ -1,9 +1,9 @@
 version: 2.1
 jobs:
   build:
+    working_directory: /SimpleGenericPattern
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:5.0-buster-slim
-      - image: mcr.microsoft.com/dotnet/aspnet:5.0
     steps:
       - checkout
       - run:
@@ -19,6 +19,7 @@ jobs:
           command: dotnet test
           working_directory: SimpleGenericPattern
       - run:
+          - image: mcr.microsoft.com/dotnet/aspnet:5.0
           name: Build Images
           command: |
             docker build -t SimpleGenericPatterns .
