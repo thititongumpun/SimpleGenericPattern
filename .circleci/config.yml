@@ -18,7 +18,9 @@ jobs:
           version: 19.03.13
       - run:
           name: Install Docker client
-          command: apk add docker-cli
+          command: |
+            apt-get update
+            apt-get install docker-ce-cli
       - run:
           name: Build Image
           command: |
