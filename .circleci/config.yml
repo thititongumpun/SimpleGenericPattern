@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: /SimpleGenericPattern
+    working_directory: /src
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:5.0-buster-slim
     steps:
