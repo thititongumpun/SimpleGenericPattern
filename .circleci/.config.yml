@@ -1,43 +1,26 @@
 version: 2.1
-
-orbs:
-  windows: circleci/windows@2.2.0
-
 jobs:
-  test:
-    description: Test WebApi
-    executor:
-      name: windows/default
-    steps:
-      - checkout
-      - restore_cache:
-        keys:
-          - dotnet-packages-v1-{{ checksum "SimpleGenericPattern/SimpleGenericPattern.cspoj"}}
-      - run:
-          name: "Install project dependencies"
-          comand: dotnet restore
-      -save_cache:
-        paths:
-        - D:\C#\SimpleGenericPattern\packages
-        keys: dotnet-packages-v1-{{ checksum "SimpleGenericPattern/SimpleGenericPattern.cspoj"}}
-      - run:
-        name: "Run WebApi Test"
-        command: "dotnet.exe test"
-      - store_artifacts:
-        path: D:\C#\SimpleGenericPattern\project\test
   build:
-    description: Build
-    executor:
-      name: windows/default
+    docker:
+      - image: eqeqew
     steps:
       - checkout
       - run:
-          name: "Build WebApi"
-          command: dotnet build
-workflows:
-  test_and_build:
-    jobs:
-      - test
-      - build:
-        requires:
-          - test
+        name: Restore
+        command: dotnet restore
+        working_directory: SimpleGenericPattern
+      - run:
+        name: Build
+        command: dotnet build -c Release
+        working_directory: SimpleGenericPattern
+      - run:
+        name: Test
+        command: dotnet test
+        working_directory: SimpleGenericPattern
+      - setup_remote_docker:
+        docker_layer_caching: true
+      - run:
+          name: Build Images
+          command: |
+            docker build -t SimpleGenericPattern .
+            
