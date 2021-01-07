@@ -2,6 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
+      - image: mcr.microsoft.com/dotnet/sdk:5.0-buster-slim
       - image: mcr.microsoft.com/dotnet/aspnet:5.0
     steps:
       - checkout
